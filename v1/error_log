@@ -1,0 +1,6 @@
+[17-May-2024 12:37:49 UTC] PHP Warning:  include_once(connection.php): failed to open stream: No such file or directory in /home2/wadhuaum/wuxingpackaging.ae/partials/topBar.php on line 61
+[17-May-2024 12:37:49 UTC] PHP Warning:  include_once(): Failed opening 'connection.php' for inclusion (include_path='.:/opt/cpanel/ea-php74/root/usr/share/pear') in /home2/wadhuaum/wuxingpackaging.ae/partials/topBar.php on line 61
+[17-May-2024 12:37:49 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home2/wadhuaum/wuxingpackaging.ae/partials/Navbar.php on line 12
+[17-May-2024 12:37:49 UTC] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, null given in /home2/wadhuaum/wuxingpackaging.ae/partials/Navbar.php on line 13
+[17-May-2024 12:51:29 UTC] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, bool given in /home2/wadhuaum/wuxingpackaging.ae/partials/Navbar.php on line 13
+[17-May-2024 12:55:21 UTC] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, bool given in /home2/wadhuaum/wuxingpackaging.ae/partials/Navbar.php on line 13
