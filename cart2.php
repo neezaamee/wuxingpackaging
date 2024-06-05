@@ -77,9 +77,12 @@
                                     </div>
                                 </div>
                             </td>
-                            <td class="align-middle item">$150</td>
-                            <td class="align-middle"><button class="btn btn-sm btn-primary"><i
-                                        class="fa fa-times"></i></button></td>
+                            <td class="align-middle item-total">$150</td>
+                            <td class="align-middle">
+                                <button class="btn btn-sm btn-primary btn-remove" onclick="removeRow(this);">
+                                    <i class="fa fa-times"></i>
+                                </button>
+                            </td>
                         </tr>
                         <tr>
                             <td class="align-middle"><img src="img/product-2.jpg" alt="" style="width: 50px;"> Colorful
@@ -88,23 +91,25 @@
                             <td class="align-middle">
                                 <div class="input-group quantity mx-auto" style="width: 100px;">
                                     <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary btn-minus">
+                                        <button class="btn btn-sm btn-primary btn-minus" onclick="decreaseQuantity(this)">
                                             <i class="fa fa-minus"></i>
                                         </button>
                                     </div>
                                     <input type="text"
-                                        class="form-control form-control-sm bg-secondary text-center item-quantity"
-                                        value="1">
+                                        class="form-control form-control-sm bg-secondary text-center item-quantity" value="1" onchange="handleQuantityChange(this)">
                                     <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary btn-plus">
+                                        <button class="btn btn-sm btn-primary btn-plus" onclick="increaseQuantity(this)">
                                             <i class="fa fa-plus"></i>
                                         </button>
                                     </div>
                                 </div>
                             </td>
-                            <td class="align-middle">$150</td>
-                            <td class="align-middle"><button class="btn btn-sm btn-primary"><i
-                                        class="fa fa-times"></i></button></td>
+                            <td class="align-middle item-total">$150</td>
+                            <td class="align-middle">
+                                <button class="btn btn-sm btn-primary btn-remove" onclick="removeRow(this)">
+                                    <i class="fa fa-times"></i>
+                                </button>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -146,31 +151,32 @@
     <!-- Footer End -->
 
     <!-- Footer JS Includes -->
-    <?php include "layout/footerJsIncludes.php"; ?>
+    <?php //include "layout/footerJsIncludes.php"; ?>
 
     <script>
         // JavaScript code for cart functionality
         document.addEventListener("DOMContentLoaded", function () {
-            // Function to update total amount
-            function updateGrandTotal() {
+            // Function to update individual item total and grand total
+            function updateTotals() {
                 var grandTotal = 0;
-                var prices = document.querySelectorAll(".item-price");
-                var quantities = document.querySelectorAll(".item-quantity");
-                for (var i = 0; i < prices.length; i++) {
-                    grandTotal += parseFloat(prices[i].textContent.replace("$", "")) * parseInt(quantities[i].value);
-                }
+                var rows = document.querySelectorAll("#cartTable tbody tr");
+
+                rows.forEach(function (row) {
+                    var priceElement = row.querySelector(".item-price");
+                    var quantityElement = row.querySelector(".item-quantity");
+                    var totalElement = row.querySelector(".item-total");
+
+                    if (priceElement && quantityElement && totalElement) {
+                        var price = parseFloat(priceElement.textContent.replace("$", ""));
+                        var quantity = parseInt(quantityElement.value);
+                        var total = price * quantity;
+                        totalElement.textContent = "$" + total.toFixed(2);
+                        grandTotal += total;
+                    }
+                });
+
                 document.getElementById("totalAmount").textContent = "$" + grandTotal.toFixed(2);
             }
-
-            // Function to handle quantity change
-            /* function handleQuantityChange() {
-                var quantityInputs = document.querySelectorAll(".item-quantity");
-                quantityInputs.forEach(function (input) {
-                    input.addEventListener("change", function () {
-                        updateGrandTotal();
-                    });
-                });
-            } */
 
             // Function to handle plus and minus buttons
             function handlePlusMinusButtons() {
@@ -178,23 +184,23 @@
                 var minusButtons = document.querySelectorAll(".btn-minus");
 
                 plusButtons.forEach(function (button) {
-                    button.addEventListener("click", function () {
-                        button.dataset.listener = true;
+                    button.addEventListener("click", function (event) {
+                        event.preventDefault();
                         var quantityInput = button.parentElement.parentElement.querySelector(".item-quantity");
                         var currentValue = parseInt(quantityInput.value);
                         quantityInput.value = currentValue + 1;
-                        updateGrandTotal();
+                        updateTotals();
                     });
                 });
 
                 minusButtons.forEach(function (button) {
-                    button.addEventListener("click", function () {
-                        button.dataset.listener = true;
+                    button.addEventListener("click", function (event) {
+                        event.preventDefault();
                         var quantityInput = button.parentElement.parentElement.querySelector(".item-quantity");
                         var currentValue = parseInt(quantityInput.value);
                         if (currentValue > 1) {
                             quantityInput.value = currentValue - 1;
-                            updateGrandTotal();
+                            updateTotals();
                         }
                     });
                 });
@@ -205,18 +211,82 @@
                 var quantityInputs = document.querySelectorAll(".item-quantity");
                 quantityInputs.forEach(function (input) {
                     input.addEventListener("change", function () {
-                        updateGrandTotal();
+                        updateTotals();
                     });
                 });
             }
 
+            // Function to handle remove button
+            function handleRemoveButtons() {
+                var removeButtons = document.querySelectorAll(".btn-remove");
+                removeButtons.forEach(function (button) {
+                    button.addEventListener("click", function (event) {
+                        event.preventDefault();
+                        var row = button.parentElement.parentElement;
+                        row.remove();
+                        updateTotals();
+                    });
+                });
+            }
 
             // Initialize
             handlePlusMinusButtons();
-            //handleQuantityChange();
-            updateGrandTotal();
+            handleQuantityChange();
+            handleRemoveButtons();
+            updateTotals();
         });
     </script>
+    <!-- <script>
+    // JavaScript code for cart functionality
+    function updateTotals() {
+        var grandTotal = 0;
+        var rows = document.querySelectorAll("#cartTable tbody tr");
+
+        rows.forEach(function (row) {
+            var priceElement = row.querySelector(".item-price");
+            var quantityElement = row.querySelector(".item-quantity");
+            var totalElement = row.querySelector(".item-total");
+
+            if (priceElement && quantityElement && totalElement) {
+                var price = parseFloat(priceElement.textContent.replace("$", ""));
+                var quantity = parseInt(quantityElement.value);
+                var total = price * quantity;
+                totalElement.textContent = "$" + total.toFixed(2);
+                grandTotal += total;
+            }
+        });
+
+        document.getElementById("totalAmount").textContent = "$" + grandTotal.toFixed(2);
+    }
+
+    function handleQuantityChange(input) {
+        updateTotals();
+    }
+
+    function increaseQuantity(button) {
+        var quantityInput = button.parentElement.parentElement.querySelector(".item-quantity");
+        var currentValue = parseInt(quantityInput.value);
+        quantityInput.value = currentValue + 1;
+        updateTotals();
+    }
+
+    function decreaseQuantity(button) {
+        var quantityInput = button.parentElement.parentElement.querySelector(".item-quantity");
+        var currentValue = parseInt(quantityInput.value);
+        if (currentValue > 1) {
+            quantityInput.value = currentValue - 1;
+            updateTotals();
+        }
+    }
+
+    function removeRow(button) {
+        var row = button.parentElement.parentElement;
+        row.remove();
+        updateTotals();
+    }
+</script> -->
+
+
 </body>
 
 </html>
