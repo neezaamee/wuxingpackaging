@@ -91,14 +91,14 @@
                             <td class="align-middle">
                                 <div class="input-group quantity mx-auto" style="width: 100px;">
                                     <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary btn-minus" onclick="decreaseQuantity(this)">
+                                        <button class="btn btn-sm btn-primary btn-minus">
                                             <i class="fa fa-minus"></i>
                                         </button>
                                     </div>
                                     <input type="text"
                                         class="form-control form-control-sm bg-secondary text-center item-quantity" value="1" onchange="handleQuantityChange(this)">
                                     <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary btn-plus" onclick="increaseQuantity(this)">
+                                        <button class="btn btn-sm btn-primary btn-plus">
                                             <i class="fa fa-plus"></i>
                                         </button>
                                     </div>
@@ -151,8 +151,7 @@
     <!-- Footer End -->
 
     <!-- Footer JS Includes -->
-    <?php //include "layout/footerJsIncludes.php"; ?>
-
+    
     <script>
         // JavaScript code for cart functionality
         document.addEventListener("DOMContentLoaded", function () {
@@ -228,65 +227,16 @@
                     });
                 });
             }
-
+            
             // Initialize
             handlePlusMinusButtons();
             handleQuantityChange();
             handleRemoveButtons();
             updateTotals();
         });
-    </script>
-    <!-- <script>
-    // JavaScript code for cart functionality
-    function updateTotals() {
-        var grandTotal = 0;
-        var rows = document.querySelectorAll("#cartTable tbody tr");
+        </script>
 
-        rows.forEach(function (row) {
-            var priceElement = row.querySelector(".item-price");
-            var quantityElement = row.querySelector(".item-quantity");
-            var totalElement = row.querySelector(".item-total");
-
-            if (priceElement && quantityElement && totalElement) {
-                var price = parseFloat(priceElement.textContent.replace("$", ""));
-                var quantity = parseInt(quantityElement.value);
-                var total = price * quantity;
-                totalElement.textContent = "$" + total.toFixed(2);
-                grandTotal += total;
-            }
-        });
-
-        document.getElementById("totalAmount").textContent = "$" + grandTotal.toFixed(2);
-    }
-
-    function handleQuantityChange(input) {
-        updateTotals();
-    }
-
-    function increaseQuantity(button) {
-        var quantityInput = button.parentElement.parentElement.querySelector(".item-quantity");
-        var currentValue = parseInt(quantityInput.value);
-        quantityInput.value = currentValue + 1;
-        updateTotals();
-    }
-
-    function decreaseQuantity(button) {
-        var quantityInput = button.parentElement.parentElement.querySelector(".item-quantity");
-        var currentValue = parseInt(quantityInput.value);
-        if (currentValue > 1) {
-            quantityInput.value = currentValue - 1;
-            updateTotals();
-        }
-    }
-
-    function removeRow(button) {
-        var row = button.parentElement.parentElement;
-        row.remove();
-        updateTotals();
-    }
-</script> -->
-
-
+<?php //include_once "layout/footerJsIncludes.php"; ?>
 </body>
 
 </html>
