@@ -3,12 +3,8 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Wuxing Packaging | Your Trusted Packaging Material Supplier</title>
+    <title>Shopping Cart</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="Packaging materials, boxes, bags, and more | Wuxing Packaging" name="keywords">
-    <meta
-        content="Discover a wide range of high-quality packaging materials at Wuxing Packaging. From boxes to bags, we've got you covered!"
-        name="description">
     <!-- includes from static includes -->
     <?php include "layout/headStaticIncludes.php"; ?>
     <style>
@@ -56,7 +52,9 @@
                     <!-- Table body -->
                     <tbody class="align-middle">
                         <!-- Cart items will be dynamically added here -->
-                        <tr>
+
+
+                        <!-- <tr>
                             <td class="align-middle"><img src="img/product-1.jpg" alt="" style="width: 50px;"> Colorful
                                 Stylish Shirt</td>
                             <td class="align-middle item-price">$150</td>
@@ -110,7 +108,7 @@
                                     <i class="fa fa-times"></i>
                                 </button>
                             </td>
-                        </tr>
+                        </tr> -->
                     </tbody>
                 </table>
             </div>
@@ -149,10 +147,118 @@
     <!-- Footer Start + Back to Top -->
     <?php include "layout/Footer.php"; ?>
     <!-- Footer End -->
-
+    <?php include_once "layout/footerJsIncludes.php"; ?>
     <!-- Footer JS Includes -->
     
     <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            loadCart();
+
+            document.querySelectorAll('.btn-plus, .btn-minus').forEach(function (button) {
+                button.addEventListener('click', function(event) {
+                    event.stopPropagation();
+                });
+            });
+        });
+
+        function loadCart() {
+            var cart = JSON.parse(localStorage.getItem('cart')) || [];
+            var cartTableBody = document.querySelector("#cartTable tbody");
+            cartTableBody.innerHTML = '';
+
+            cart.forEach(function (item) {
+                var row = document.createElement('tr');
+                row.innerHTML = `
+                    <td class="align-middle">${item.name}</td>
+                    <td class="align-middle item-price">$${item.price.toFixed(2)}</td>
+                    <td class="align-middle">
+                        <div class="input-group quantity mx-auto" style="width: 100px;">
+                            <div class="input-group-btn">
+                                <button class="btn btn-sm btn-primary btn-minus" onclick="decreaseQuantity(this, ${item.id})">
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                            </div>
+                            <input type="text" class="form-control form-control-sm bg-secondary text-center item-quantity" value="${item.quantity}" onchange="handleQuantityChange(this, ${item.id})">
+                            <div class="input-group-btn">
+                                <button class="btn btn-sm btn-primary btn-plus" onclick="increaseQuantity(this, ${item.id})">
+                                    <i class="fa fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="align-middle item-total">$${(item.price * item.quantity).toFixed(2)}</td>
+                    <td class="align-middle">
+                        <button class="btn btn-sm btn-primary btn-remove" onclick="removeRow(this, ${item.id})">
+                            <i class="fa fa-times"></i>
+                        </button>
+                    </td>
+                `;
+                cartTableBody.appendChild(row);
+            });
+
+            updateTotals();
+        }
+
+        function updateTotals() {
+            var grandTotal = 0;
+            var rows = document.querySelectorAll("#cartTable tbody tr");
+
+            rows.forEach(function (row) {
+                var priceElement = row.querySelector(".item-price");
+                var quantityElement = row.querySelector(".item-quantity");
+                var totalElement = row.querySelector(".item-total");
+
+                if (priceElement && quantityElement && totalElement) {
+                    var price = parseFloat(priceElement.textContent.replace("$", ""));
+                    var quantity = parseInt(quantityElement.value);
+                    var total = price * quantity;
+                    totalElement.textContent = "$" + total.toFixed(2);
+                    grandTotal += total;
+                }
+            });
+
+            document.getElementById("totalAmount").textContent = "$" + grandTotal.toFixed(2);
+        }
+
+        function handleQuantityChange(input, id) {
+            var cart = JSON.parse(localStorage.getItem('cart')) || [];
+            var item = cart.find(item => item.id == id);
+            item.quantity = parseInt(input.value);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateTotals();
+        }
+
+        function increaseQuantity(button, id) {
+            var cart = JSON.parse(localStorage.getItem('cart')) || [];
+            var item = cart.find(item => item.id == id);
+            item.quantity += 1;
+            localStorage.setItem('cart', JSON.stringify(cart));
+            loadCart();
+        }
+
+        function decreaseQuantity(button, id) {
+            var cart = JSON.parse(localStorage.getItem('cart')) || [];
+            var item = cart.find(item => item.id == id);
+            if (item.quantity > 1) {
+                item.quantity -= 1;
+                localStorage.setItem('cart', JSON.stringify(cart));
+                loadCart();
+            }
+        }
+
+        function removeRow(button, id) {
+            var cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart = cart.filter(item => item.id != id);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            loadCart();
+        }
+
+        function proceedToCheckout() {
+            alert("Proceeding to checkout...");
+            // Here, you would typically redirect to a checkout page or submit the cart data to your server
+        }
+    </script>
+    <!-- <script>
         // JavaScript code for cart functionality
         document.addEventListener("DOMContentLoaded", function () {
             // Function to update individual item total and grand total
@@ -234,9 +340,9 @@
             handleRemoveButtons();
             updateTotals();
         });
-        </script>
+        </script> -->
 
-<?php //include_once "layout/footerJsIncludes.php"; ?>
+
 </body>
 
 </html>
