@@ -59,14 +59,14 @@
                         <div class="navbar-nav mr-auto py-0">
                             <a href="/" class="nav-item nav-link">Home</a>
                             <a href="shop.php" class="nav-item nav-link">Shop</a>
-                            <a href="detail.php" class="nav-item nav-link">Shop Detail</a>
-                            <div class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
-                                <div class="dropdown-menu rounded-0 m-0">
-                                    <a href="cart.php" class="dropdown-item">Shopping Cart</a>
-                                    <a href="checkout.php" class="dropdown-item">Checkout</a>
-                                </div>
-                            </div>
+                            <!--<a href="detail.php" class="nav-item nav-link">Shop Detail</a>-->
+                            <!--<div class="nav-item dropdown">-->
+                            <!--    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>-->
+                            <!--    <div class="dropdown-menu rounded-0 m-0">-->
+                            <!--        <a href="cart.php" class="dropdown-item">Shopping Cart</a>-->
+                            <!--        <a href="checkout.php" class="dropdown-item">Checkout</a>-->
+                            <!--    </div>-->
+                            <!--</div>-->
                             
                             <?php
                        $Q = "SELECT * FROM subcategory where idcategory=1 AND id > 1";
@@ -103,13 +103,13 @@
                        }
                        ?>
                        
-                            <div class="nav-item dropdown">
+                            <!--<div class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
                                 <div class="dropdown-menu rounded-0 m-0">
                                     <a href="cart.php" class="dropdown-item">Shopping Cart</a>
                                     <a href="checkout.php" class="dropdown-item">Checkout</a>
                                 </div>
-                            </div>
+                            </div>-->
                             
                             
                             <a href="contact.php" class="nav-item nav-link active">Contact</a>
