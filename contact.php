@@ -20,7 +20,7 @@
     <!-- Navbar Start -->
     <?php include "partials/Navbar.php"; ?>
     <!-- Navbar End -->
-    
+
 
 
     <!-- Page Header Start -->
@@ -31,9 +31,6 @@
 
     <!-- Contact Start -->
     <div class="container-fluid pt-5">
-        <div class="text-center mb-4">
-            <h2 class="section-title px-5"><span class="px-2">Contact For Any Queries</span></h2>
-        </div>
         <div class="row px-xl-5">
             <div class="col-lg-7 mb-5">
                 <div class="contact-form">
@@ -69,19 +66,26 @@
             </div>
             <div class="col-lg-5 mb-5">
                 <h5 class="font-weight-semi-bold mb-3">Get In Touch</h5>
-                <p>Justo sed diam ut sed amet duo amet lorem amet stet sea ipsum, sed duo amet et. Est elitr dolor elitr erat sit sit. Dolor diam et erat clita ipsum justo sed.</p>
+                <p>Have questions, concerns, or feedback? We're here to help! Reach out to our dedicated support team
+                    for assistance with orders, products, or any other inquiries. Whether you prefer email, phone, or
+                    live chat, we're committed to providing prompt and friendly assistance to ensure your shopping
+                    experience with us is nothing short of excellent. Get in touch today and let us assist you every
+                    step of the way!</p>
                 <div class="d-flex flex-column mb-3">
                     <h5 class="font-weight-semi-bold mb-3">Store 1</h5>
-                    <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i>123 Street, New York, USA</p>
-                    <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>info@example.com</p>
-                    <p class="mb-2"><i class="fa fa-phone-alt text-primary mr-3"></i>+012 345 67890</p>
+                    <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i>Dragon Mart 1 Shop GBB10,
+                        Dubai, UAE</p>
+                    <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i><a
+                            href="mailto:info@wuxingpackaging.com">info@wuxingpackaging.com</a></p>
+                    <p class="mb-2"><i class="fa fa-phone-alt text-primary mr-3"></i><a href="tel:0554094665">+971 554
+                            0946 65</a></p>
                 </div>
-                <div class="d-flex flex-column">
+                <!-- <div class="d-flex flex-column">
                     <h5 class="font-weight-semi-bold mb-3">Store 2</h5>
                     <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i>123 Street, New York, USA</p>
                     <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>info@example.com</p>
                     <p class="mb-0"><i class="fa fa-phone-alt text-primary mr-3"></i>+012 345 67890</p>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
@@ -90,7 +94,7 @@
 
     <!-- Footer Start + Back to Top -->
     <?php include "layout/Footer.php"; ?>
-    <!-- Footer End -->  
+    <!-- Footer End -->
 
 
     <!--Footer JS Includes-->

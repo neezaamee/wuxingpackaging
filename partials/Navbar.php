@@ -103,21 +103,21 @@
                        }
                        ?>
                        
-                            <!--<div class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
-                                <div class="dropdown-menu rounded-0 m-0">
-                                    <a href="cart.php" class="dropdown-item">Shopping Cart</a>
-                                    <a href="checkout.php" class="dropdown-item">Checkout</a>
-                                </div>
-                            </div>-->
-                            
-                            
-                            <a href="contact.php" class="nav-item nav-link active">Contact</a>
+                       
+                       
+                       <a href="contact.php" class="nav-item nav-link active">Contact</a>
+                       <div class="nav-item dropdown">
+                           <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Register</a>
+                           <div class="dropdown-menu rounded-0 m-0">
+                               <a href="#" class="dropdown-item">Login</a>
+                               <a href="#" class="dropdown-item">Register</a>
+                           </div>
+                       </div>
                         </div>
-                        <div class="navbar-nav ml-auto py-0">
+                        <!-- <div class="navbar-nav ml-auto py-0">
                             <a href="" class="nav-item nav-link">Login</a>
                             <a href="" class="nav-item nav-link">Register</a>
-                        </div>
+                        </div> -->
                     </div>
                 </nav>
             </div>

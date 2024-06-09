@@ -82,7 +82,9 @@ $totalPages = ceil($totalProducts / $productsPerPage);
     <div class="container-fluid pt-5">
         <div class="row px-xl-5">
             <!-- Shop Sidebar Start -->
-            <div class="col-lg-3 col-md-12">
+             <?php 
+             /* 
+             <div class="col-lg-3 col-md-12">
                 <!-- Price Start -->
                 <div class="border-bottom mb-4 pb-4">
                     <h5 class="font-weight-semi-bold mb-4">Filter by price</h5>
@@ -212,11 +214,14 @@ $totalPages = ceil($totalProducts / $productsPerPage);
                 </div>
                 <!-- Size End -->
             </div>
+             */
+             ?>
+            
             <!-- Shop Sidebar End -->
 
 
             <!-- Shop Product Start -->
-            <div class="col-lg-9 col-md-12">
+            <div class="col-lg-12 col-md-12">
                 <div class="row pb-3">
                     <div class="col-12 pb-1">
                         <div class="d-flex align-items-center justify-content-between mb-4">
@@ -294,7 +299,7 @@ $totalPages = ceil($totalProducts / $productsPerPage);
                                             data-id="<?php echo $Row['id']; ?>" data-name="<?php echo $Row['name']; ?>"
                                             data-price="<?php echo $Row['discountedprice']; ?>">
                                             <i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart
-                                        </button>
+                                        </button>                                        
                                     </div>
                                 </div>
                             </div>
@@ -321,14 +326,31 @@ $totalPages = ceil($totalProducts / $productsPerPage);
 
                                 if ($totalPages > 1) {
                                     $Previous = $page - 1;
-                                    echo "<li class='page-item " . ($Previous == 0 ? 'disabled' : '') . "'><a class='page-link' href='?category=$categoryID&page=$Previous' aria-label='Previous'><span aria-hidden='true'>&laquo;</span><span class='sr-only'>Previous</span></a></li>";
+                                        if(isset($categoryID)){
+                                            echo "<li class='page-item " . ($Previous == 0 ? 'disabled' : '') . "'><a class='page-link' href='?category=$categoryID&page=$Previous' aria-label='Previous'><span aria-hidden='true'>&laquo;</span><span class='sr-only'>Previous</span></a></li>";                                            
+                                            }else{
+                                                echo "<li class='page-item " . ($Previous == 0 ? 'disabled' : '') . "'><a class='page-link' href='?page=$Previous' aria-label='Previous'><span aria-hidden='true'>&laquo;</span><span class='sr-only'>Previous</span></a></li>";
+                                        }
 
                                     // Render pagination links
-                                    for ($i = 1; $i <= $totalPages; $i++) {
-                                        echo "<li class='page-item " . ($i == $page ? 'active' : '') . "'><a class='page-link' href='?category=$categoryID&page=$i'>$i</a></li>";
+                                    if(isset($categoryID)){
+                                        for ($i = 1; $i <= $totalPages; $i++) {
+                                            echo "<li class='page-item " . ($i == $page ? 'active' : '') . "'><a class='page-link' href='?category=$categoryID&page=$i'>$i</a></li>";
+                                        }
+                                    }else{
+                                        for ($i = 1; $i <= $totalPages; $i++) {
+                                            echo "<li class='page-item " . ($i == $page ? 'active' : '') . "'><a class='page-link' href='?page=$i'>$i</a></li>";
+                                        }
                                     }
+                                    
                                     $Next = $page + 1;
-                                    echo "<li class='page-item " . ($page == $totalPages ? 'disabled' : '') . "'><a class='page-link' href='?category=$categoryID&page=$Previous' aria-label='Next'><span aria-hidden='true'>&raquo;</span><span class='sr-only'>Next</span></a></li>";
+                                    if(isset($categoryID)){
+                                        echo "<li class='page-item " . ($page == $totalPages ? 'disabled' : '') . "'><a class='page-link' href='?category=$categoryID&page=$Next' aria-label='Next'><span aria-hidden='true'>&raquo;</span><span class='sr-only'>Next</span></a></li>";
+                                        }
+                                        else{
+                                        echo "<li class='page-item " . ($page == $totalPages ? 'disabled' : '') . "'><a class='page-link' href='?page=$Next' aria-label='Next'><span aria-hidden='true'>&raquo;</span><span class='sr-only'>Next</span></a></li>";
+
+                                    }
 
                                 } else {
                                     if ($totalProducts > 0) {
@@ -373,25 +395,25 @@ $totalPages = ceil($totalProducts / $productsPerPage);
     <!--Footer JS Includes-->
     <?php include "layout/footerJsIncludes.php"; ?>
     <script>
-    function addToCart(button) {
-        var product = button;
-        var id = product.getAttribute('data-id');
-        var name = product.getAttribute('data-name');
-        var price = parseFloat(product.getAttribute('data-price'));
+        function addToCart(button) {
+            var product = button;
+            var id = product.getAttribute('data-id');
+            var name = product.getAttribute('data-name');
+            var price = parseFloat(product.getAttribute('data-price'));
 
-        var cart = JSON.parse(localStorage.getItem('cart')) || [];
-        var item = cart.find(item => item.id == id);
+            var cart = JSON.parse(localStorage.getItem('cart')) || [];
+            var item = cart.find(item => item.id == id);
 
-        if (item) {
-            item.quantity += 1;
-        } else {
-            cart.push({ id, name, price, quantity: 1 });
+            if (item) {
+                item.quantity += 1;
+            } else {
+                cart.push({ id, name, price, quantity: 1 });
+            }
+
+            localStorage.setItem('cart', JSON.stringify(cart));
+            alert(name + ' has been added to your cart');
         }
-
-        localStorage.setItem('cart', JSON.stringify(cart));
-        alert(name + ' has been added to your cart');
-    }
-</script>
+    </script>
 </body>
 
 </html>

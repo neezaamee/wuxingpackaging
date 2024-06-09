@@ -57,7 +57,7 @@
                             </div>
                             <div class="col-md-6 form-group">
                                 <label>Mobile No</label>
-                                <input class="form-control" type="tel" placeholder="+123 456 789" name="phone" required>
+                                <input class="form-control" type="tel" placeholder="0551234567" name="phone" required>
                             </div>
                             <div class="col-md-6 form-group">
                                 <label>Address Line 1</label>
@@ -189,7 +189,7 @@
                 .then(data => {
                     alert(data);
                     localStorage.removeItem('cart');
-                    window.location.href = 'thankyou.php';
+                    window.location.href = 'index.php';
                 }).catch(error => console.error('Error:', error));
         }
     </script>

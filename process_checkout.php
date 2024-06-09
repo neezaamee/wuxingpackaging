@@ -22,7 +22,7 @@ $shipping_fee = $_POST['shipping_fee'];
 $total = $_POST['total'];
 
 // Log the received data to a file for testing
-$logData = "Received Data:\n";
+/* $logData = "Received Data:\n";
 $logData .= "First Name: $firstname\n";
 $logData .= "Last Name: $lastname\n";
 $logData .= "Email: $email\n";
@@ -39,26 +39,29 @@ $logData .= "Cart Items:\n" . print_r($cart, true) . "\n\n";
 
 // Append data to the log file
 $logFile = 'checkout_log.txt';
-file_put_contents($logFile, $logData, FILE_APPEND);
-
+file_put_contents($logFile, $logData, FILE_APPEND); */
+$discount = 0;
 // Insert order into orders table
-$sql = "INSERT INTO customers (firstname, lastname, email, phone, address1, address2, idstate, zipcode)
+$sql_customer = "INSERT INTO customers (firstname, lastname, email, phone, address1, address2, idstate, zipcode)
         VALUES ('$firstname', '$lastname', '$email', '$phone', '$address1', '$address2', '$state_id', '$zipcode')";
 
-if ($con->query($sql) === TRUE) {
-    $order_id = $con->insert_id;
-
-    // Insert order items into order_items table
-    /* foreach ($cart as $item) {
-        $product_id = $item['id'];
-        $quantity = $item['quantity'];
-        $price = $item['price'];
-
-        $sql_item = "INSERT INTO order_items (order_id, product_id, quantity, price)
-                     VALUES ('$order_id', '$product_id', '$quantity', '$price')";
-
-        $con->query($sql_item);
-    } */
+if ($con->query($sql_customer) === TRUE) {
+    $customer_id = $con->insert_id;
+    $sql_order = "INSERT INTO orders (idcustomer, subtotal, shippingfee, discount, grandtotal, note) VALUES ('$customer_id', '$subtotal', '$shipping_fee', '$discount', '$total', '$additional_details')";
+    if($con->query($sql_order) === TRUE){
+        $order_id = $con->insert_id;
+        // Insert order items into order_items table
+        foreach ($cart as $item) {
+            $product_id = $item['id'];
+            $quantity = $item['quantity'];
+            $price = $item['price'];
+    
+            $sql_item = "INSERT INTO orderitemsdetail (idorder, idproduct, quantity, price)
+                         VALUES ('$order_id', '$product_id', '$quantity', '$price')";
+    
+            $con->query($sql_item);
+        }
+    }
 
     echo "Order placed successfully!";
 } else {

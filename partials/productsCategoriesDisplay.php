@@ -2,7 +2,7 @@
         <div class="row px-xl-5 pb-3">
             <?php
             //fetching all products category available
-            $Q = "SELECT * FROM subcategory where idcategory=1";
+            $Q = "SELECT * FROM subcategory where idcategory=1 AND id > 1";
             $QR = mysqli_query($con, $Q);
             $NR = mysqli_num_rows($QR);
 

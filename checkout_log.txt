@@ -149,3 +149,111 @@ Array
 )
 
 
+Received Data:
+First Name: Glenna
+Last Name: Shannon
+Email: dydu@mailinator.com
+Phone: +1 (262) 118-1558
+Address 1: 82 East White Oak Road
+Address 2: Sunt illum suscipi
+State ID: 2
+Zipcode: 22557
+Additional Details: Sunt numquam culpa 
+Subtotal: 82.50
+Shipping Fee: 10.00
+Total: 92.50
+Cart Items:
+Array
+(
+    [0] => Array
+        (
+            [id] => 161
+            [name] => Rice Storage Container, Cereal Containers Set (2.5L*4 Units a Set) with Measuring Cup Plastic Storage Containers (RDFC-4)
+            [price] => 27.5
+            [quantity] => 3
+        )
+
+)
+
+
+Received Data:
+First Name: Sylvester
+Last Name: Wilder
+Email: kegugu@mailinator.com
+Phone: 0551234567
+Address 1: 843 Nobel Lane
+Address 2: Impedit dicta corpo
+State ID: 3
+Zipcode: 58821
+Additional Details: Aut est eligendi in
+Subtotal: 28.25
+Shipping Fee: 10.00
+Total: 38.25
+Cart Items:
+Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Black Plain Gift Bags Shopping Bag Party Favor Bags ( Available 3 Sizes ) with Cotton Handle for Birthday Mother’s Day, Baby Shower Bridal Shower Wedding Gift.
+            [price] => 17.75
+            [quantity] => 1
+        )
+
+    [1] => Array
+        (
+            [id] => 21
+            [name] => Kraft Hard Paper Bags, Ropes Handle ,Gift Bags, Brown Kraft Paper Bag Bride, Birthday Gift Bag for Celebrations, Bags for Party.
+            [price] => 10.5
+            [quantity] => 1
+        )
+
+)
+
+
+Received Data:
+First Name: Sylvester
+Last Name: Wilder
+Email: kegugu@mailinator.com
+Phone: 0551234567
+Address 1: 843 Nobel Lane
+Address 2: Impedit dicta corpo
+State ID: 3
+Zipcode: 58821
+Additional Details: Aut est eligendi in
+Subtotal: 28.25
+Shipping Fee: 10.00
+Total: 38.25
+Cart Items:
+Array
+(
+)
+
+
+Received Data:
+First Name: Caesar
+Last Name: Marks
+Email: ruhifaw@mailinator.com
+Phone: 0553216547
+Address 1: 62 White Cowley Road
+Address 2: Fugiat est iusto es
+State ID: 4
+Zipcode: 45740
+Additional Details: Et illo qui at autem
+Subtotal: 15.75
+Shipping Fee: 10.00
+Total: 25.75
+Cart Items:
+Array
+(
+    [0] => Array
+        (
+            [id] => 60
+            [name] => Baby Velvet Hangers 11Inch Light Green
+            [price] => 15.75
+            [quantity] => 1
+        )
+
+)
+
+
